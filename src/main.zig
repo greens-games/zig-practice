@@ -10,11 +10,11 @@ const os = std.os;
 //recv is for TCP requests (TCP requires a connection) (Typically HTTP etc..)
 
 pub fn main() !void {
-    try user_input.user_input_with_prompt();
+    //try user_input.user_input_with_prompt();
     //try user_input.read_in_file();
     //try user_input.get_user_input();
     //try my_server.start_server();
-    //try my_server.start_posix_server();
+    try my_server.start_posix_server();
 }
 
 test "simple test" {

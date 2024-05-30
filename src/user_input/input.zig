@@ -41,10 +41,14 @@ fn getPlayerClass() !void {
     var buf_reader = buff_reader.reader();
     std.debug.print("Choose you class: \n WARRIOR: 1\n MAGE: 2,\n RANGER: 3\n", .{});
 
+    const allocator = std.heap.page_allocator;
+
     if (try buf_reader.readUntilDelimiterOrEof(&buf, '\n')) |line| {
         const choice: u8 = @intCast(line[0]);
-        const empty: *const []u8 = "";
+        const empty = "";
         var player_char: player.PlayerCharacter = .{ .class_name = empty };
+        const mem = try allocator.alloc(player.PlayerCharacter, @sizeOf(player.PlayerCharacter));
+        defer allocator.free(mem);
         const choice_offset = 49;
         switch (choice - choice_offset) {
             0 => player_char = player.generateClass(player.Class.WARRIOR),
