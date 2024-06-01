@@ -50,3 +50,7 @@ pub fn start_posix_server() !void {
         std.time.sleep(5000000000);
     }
 }
+
+test "always fail" {
+    try std.testing.expect(false);
+}
