@@ -1,6 +1,7 @@
 const std = @import("std");
-const my_server = @import("server.zig");
+const my_server = @import("entry.zig");
 const user_input = @import("user_input/input.zig");
+const learning = @import("learning/interfaces.zig");
 const posix = std.posix;
 const net = std.net;
 const os = std.os;
@@ -13,11 +14,10 @@ const thing = struct {
 };
 
 pub fn main() !void {
-    //try user_input.user_input_with_prompt();
-    //try user_input.read_in_file();
-    //try user_input.get_user_input();
-    //try my_server.start_server();
-    std.debug.print("Starting server\n", .{});
 
-    try my_server.start_posix_server();
+    //Stuff on function pointers
+
+    std.debug.print("Starting server \n", .{});
+    learning.try_stuff();
+    //try my_server.start_posix_server();
 }
