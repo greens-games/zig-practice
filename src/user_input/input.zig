@@ -8,15 +8,6 @@ const player = @import("../game/player.zig");
 //YOu can then use a closure to capture the returned val and use in you scope
 
 //this is a way to capture user input and print it out
-pub fn get_user_input() !void {
-    const reader = io.getStdIn().reader();
-    var buff_reader = io.bufferedReader(reader);
-    var buf: [1024]u8 = undefined;
-    var buf_reader = buff_reader.reader();
-    while (try buf_reader.readUntilDelimiterOrEof(&buf, '\n')) |line| {
-        std.debug.print("you entered: {s}\n", .{line});
-    }
-}
 
 //THis will read in a file
 pub fn read_in_file() !void {

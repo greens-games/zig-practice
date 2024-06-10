@@ -36,7 +36,7 @@ pub fn start_posix_server() !void {
     try posix.bind(s, &a.any, sock_len); //bind the socket to the address localhost:7001
     //This is not required for UDP
     try posix.listen(s, 1024); //tell the socket to start listening
-
+    std.debug.print("accepting connections: \n", .{});
     const client_sock = try posix.accept(s, &a.any, &sock_len, 0); //tell the socket at given address to start accepting connections
     while (true) {
         //clear the buffer every loop
@@ -44,10 +44,8 @@ pub fn start_posix_server() !void {
         //this is just a simple example
         var buf: [1024]u8 = undefined;
         const num_read: usize = try posix.recv(client_sock, &buf, 0); // receive a message from the socket
-        std.debug.print("received: {s}", .{buf[0..]});
+        std.debug.print("received: {s}\n", .{buf[0..]});
         _ = try posix.write(client_sock, buf[0..num_read]);
-
-        std.time.sleep(5000000000);
     }
 }
 
